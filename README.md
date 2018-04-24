@@ -1,1 +1,3 @@
-web: gunicorn --pythonpath lycheefruit app:app
+== lycheefruit ==
+
+lychee's web page of miscellaneous stuff.
