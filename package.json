@@ -1,0 +1,22 @@
+{
+  "name": "lycheefruit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://cloudiirain@github.com/cloudiirain/lycheefruit.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cloudiirain/lycheefruit/issues"
+  },
+  "homepage": "https://github.com/cloudiirain/lycheefruit#readme",
+  "dependencies": {
+    "hiori": "github:cloudiirain/hiori"
+  }
+}
