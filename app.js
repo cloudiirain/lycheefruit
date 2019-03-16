@@ -1,7 +1,10 @@
 "use strict";
 
+const fs = require('fs');
+const util = require('util');
 const Datastore = require('nedb')
 const Hiori = require('hiori');
+
 const config = require('./config.json');
 const testLoop = require('./test/index.js')
 
@@ -11,14 +14,26 @@ const testLoop = require('./test/index.js')
    process.exit(1);
  }
 
- /* Load and configure databases */
-const db = {
-  "test": {
-      "msgs": new Datastore({ filename: config.test.db.msgs, autoload: true }),
-      "usrs": new Datastore({ filename: config.test.db.usrs, autoload: true })
+
+
+
+
+// Test code
+(async () => {
+  const fileExists = util.promisify(fs.exists);
+  const readFile = util.promisify(fs.readFile);
+
+  // Load bookmark if it exists to determine lastpid
+  const bookmarkExists = await fileExists(config.bookmark);
+  if (bookmarkExists) {
+    const bookmarkFile = await readFile(config.bookmark);
+    const bookmarkJSON = JSON.parse(bookmarkFile);
   }
-}
-db.test.msgs.ensureIndex({ fieldName: 'pid', unique: true });
+  //console.log(bookmarkExists);
+})();
+
+
+
 
 /**
  * Main application loop
@@ -31,7 +46,7 @@ const mainLoop = async () => {
   hiori.init(async () => {
 
     // Register apps
-    await testLoop(hiori, db, config);
+    await testLoop(hiori);
 
     hiori.close();
   });
@@ -40,5 +55,18 @@ const mainLoop = async () => {
 /**
  * Set main loop to repeat every X milliseconds.
  */
-console.log(`${new Date().toISOString()}[main] Starting application.`);
-setInterval(mainLoop, config.global.loop_interval);
+console.log(`${new Date().toISOString()}[main] Starting application...`);
+setInterval(mainLoop, config.loop_interval);
+
+
+
+
+/* Load and configure databases */
+/*
+const db = {
+ "test": {
+     "usrs": new Datastore({ filename: config.test.db.usrs, autoload: true })
+ }
+}
+*/
+//db.test.msgs.ensureIndex({ fieldName: 'pid', unique: true });

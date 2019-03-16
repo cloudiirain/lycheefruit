@@ -1,0 +1,8 @@
+{
+  "thread_id": 83398,
+  "reset_pid": 4789343,
+  "bookmark": "data/test/bookmark.json",
+  "db": {
+    "usrs": "data/test/testUsrs.db"
+  }
+}

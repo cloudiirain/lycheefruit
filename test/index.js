@@ -1,44 +1,66 @@
 "use strict";
 
-// Database definitions
-// msg = { pid: 'int', user: 'string'}
+const fs = require('fs');
+const util = require('util');
+const Hiori = require('hiori');
+
+const readFile = util.promisify(fs.readFile);
+const writeFile = util.promisify(fs.writeFile);
+const config = require('./config.json');
+const testParseArgs = require('./parser.js');
+
+
+/* Load once before application starts */
+if (!fs.existsSync(config.bookmark)) {
+  const bookmark = { "pid": config.reset_pid }
+  writeFile(config.bookmark, JSON.stringify(bookmark), 'utf8');
+  console.log(`${new Date().toISOString()}[test] Created file: ${config.bookmark}`);
+}
 
 /**
  * Test application loop
  */
-module.exports = async function testLoop(bot, db, config) {
-  const msgDb = db.test.msgs;
+module.exports = async function testLoop(bot) {
 
-  // Prune db size
-  // Load most recent post
-  //const count = await setTimeout(() => { return 1; }, 1000);
-  //console.log(count);
+  // Load bookmark to determine lastpid
+  const bookmarkFile = await readFile(config.bookmark);
+  const lastpid = JSON.parse(bookmarkFile).pid;
 
-  //await msgDb.find({}).sort({ pid: 1 }).limit(10).exec(async (err, docs) => {
-    //const lastpid = docs.length ? docs[0].pid : config.test.reset_pid;
-    //console.log(lastpid);
-    const lastpid = config.test.reset_pid;
+  // Check if any new posts, and if true, execute loop
+  const cmds = await bot.fetchThreadCommandsSince(lastpid);
+  const lastcmd = cmds.slice(-1)[0];
+  if (lastcmd.pid > lastpid) {
 
-    // Fetch all commands since last post
-    const cmds = await bot.fetchThreadCommandsSince(lastpid);
-    const lastcmd = cmds.slice(-1)[0];
-    console.log(cmds);
-    //if (lastcmd.pid > lastpid) {}
+    // Login bot
+    await bot.login();
 
-    /*
-    const reply = await cmds.reduce((bbcode, cmd) => {
-      const cmds = post.getCommands();
-      return bbcode + ;
-    }, []);
-    */
+    // Foreach command, prepare final response
+    const textHead = '';
+    const textBody = await cmds.reduce(async (text, cmd) => {
+      await text;
+      await cmd;
 
-    // if most recent cmd > lastpid
+      // Skip old commands or commands issued by the bot
+      if (cmd.user != process.env.HIORI_USER && cmd.pid > lastpid ) {
 
-    // For cmds > lastpid
+        // Parse arguments and build reply
+        const reply = await testParseArgs(cmd);
+        const quote = Hiori.bbCodeQuote(cmd) + '\n';
+        return await text + quote + reply;
 
-    //    Do stuff: parse args
+      } else {
+        return await text;
+      }
+    }, Promise.resolve(textHead));
 
-    // Make reply
+    // Make Reply
+    await bot.replyThread(config.thread_id, textBody);
+    console.log(`${new Date().toISOString()}[test] Sent reply:\n\n${textBody}`);
 
-  //});
+    // Update bookmark
+    await writeFile(config.bookmark, JSON.stringify(lastcmd), 'utf8');
+    console.log(`${new Date().toISOString()}[test] Wrote file: ${config.bookmark}`);
+
+  }
+
 }
