@@ -1,22 +1,44 @@
 "use strict";
 
+const Datastore = require('nedb')
 const Hiori = require('hiori');
-
 const config = require('./config.json');
+const testLoop = require('./test/index.js')
 
-/*
-var bot = new Hiori(process.argv[2], process.argv[3]);
-bot.init(async () => {
-  const cmds = await bot.fetchThreadCommandsSince('4785847');
-  console.log(cmds);
-  bot.close();
-});
-*/
+/* Startup checks */
+ if (!process.env.HIORI_USER || !process.env.HIORI_PSWD) {
+   console.log('Please set HIORI_USER and HIORI_PSWDD environment variables.')
+   process.exit(1);
+ }
 
-const main = () => {
+ /* Load and configure databases */
+const db = {
+  "test": {
+      "msgs": new Datastore({ filename: config.test.db.msgs, autoload: true }),
+      "usrs": new Datastore({ filename: config.test.db.usrs, autoload: true })
+  }
+}
+db.test.msgs.ensureIndex({ fieldName: 'pid', unique: true });
+
+/**
+ * Main application loop
+ */
+const mainLoop = async () => {
   console.log(`${new Date().toISOString()}[main] Start loop.`);
+
+  // Start hiori instance
+  const hiori = new Hiori(process.env.HIORI_USER, process.env.HIORI_PSWD);
+  hiori.init(async () => {
+
+    // Register apps
+    await testLoop(hiori, db, config);
+
+    hiori.close();
+  });
 }
 
-// Main loop to repeat every X milliseconds
+/**
+ * Set main loop to repeat every X milliseconds.
+ */
 console.log(`${new Date().toISOString()}[main] Starting application.`);
-setInterval(main, config.global.loop_interval);
+setInterval(mainLoop, config.global.loop_interval);

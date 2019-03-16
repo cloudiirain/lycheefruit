@@ -12,6 +12,5 @@ npm install
 ## Startup
 
 ```bash
-// provision db
-pm2 start app.js
+HIORI_USER={username} HIORI_PSWD={password} pm2 start app.js
 ```

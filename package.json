@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/cloudiirain/lycheefruit#readme",
   "dependencies": {
-    "hiori": "github:cloudiirain/hiori"
+    "hiori": "github:cloudiirain/hiori",
+    "nedb": "^1.8.0"
   }
 }
