@@ -10,11 +10,17 @@ const config = require('./config.json');
 const testParseArgs = require('./parser.js');
 
 
-/* Load once before application starts */
+/**
+ * Set up storage files if they do not exist.
+ */
 if (!fs.existsSync(config.bookmark)) {
   const bookmark = { "pid": config.reset_pid }
   writeFile(config.bookmark, JSON.stringify(bookmark), 'utf8');
   console.log(`${new Date().toISOString()}[test] Created file: ${config.bookmark}`);
+}
+if (!fs.existsSync(config.db.usrs)) {
+  writeFile(config.db.usrs, JSON.stringify({}), 'utf8');
+  console.log(`${new Date().toISOString()}[test] Created file: ${config.db.usrs}`);
 }
 
 /**
@@ -44,18 +50,19 @@ module.exports = async function testLoop(bot) {
       if (cmd.user != process.env.HIORI_USER && cmd.pid > lastpid ) {
 
         // Parse arguments and build reply
-        const reply = await testParseArgs(cmd);
-        const quote = Hiori.bbCodeQuote(cmd) + '\n';
+        const reply = await testParseArgs(cmd) + '\n';
+        const quote = Hiori.bbCodeQuote(cmd);
         return await text + quote + reply;
 
       } else {
         return await text;
       }
     }, Promise.resolve(textHead));
+    const response = Hiori.stripUserCode(textBody);
 
     // Make Reply
-    await bot.replyThread(config.thread_id, textBody);
-    console.log(`${new Date().toISOString()}[test] Sent reply:\n\n${textBody}`);
+    await bot.replyThread(config.thread_id, response);
+    console.log(`${new Date().toISOString()}[test] Sent reply:\n\n${response}`);
 
     // Update bookmark
     await writeFile(config.bookmark, JSON.stringify(lastcmd), 'utf8');
