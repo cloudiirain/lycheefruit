@@ -1,0 +1,48 @@
+{
+  "4673": {
+    "user": "yuzuki",
+    "uid": 4673,
+    "isGhost": false,
+    "killedBy": null,
+    "kills": []
+  },
+  "16582": {
+    "user": "Blitz",
+    "uid": 16582,
+    "isGhost": false,
+    "killedBy": null,
+    "kills": [
+      "171879"
+    ]
+  },
+  "44558": {
+    "user": "villain",
+    "uid": 44558,
+    "isGhost": false,
+    "killedBy": null,
+    "kills": [
+      "83557"
+    ]
+  },
+  "83557": {
+    "user": "lychee",
+    "uid": 83557,
+    "isGhost": true,
+    "killedBy": "44558",
+    "kills": []
+  },
+  "170940": {
+    "user": "villainess",
+    "uid": 170940,
+    "isGhost": false,
+    "killedBy": null,
+    "kills": []
+  },
+  "171879": {
+    "user": "hiori",
+    "uid": 171879,
+    "isGhost": true,
+    "killedBy": "16582",
+    "kills": []
+  }
+}

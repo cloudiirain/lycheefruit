@@ -1,0 +1,8 @@
+{
+  "thread_id": 83398,
+  "scope": "stab",
+  "bookmark": "data/stab/bookmark.json",
+  "db": {
+    "usrs": "data/stab/usrs.json"
+  }
+}

@@ -1,3 +1,4 @@
 {
-  "loop_interval": 60000
+  "loop_interval": 30000,
+  "max_bookmark_size": 20
 }

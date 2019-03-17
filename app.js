@@ -1,9 +1,9 @@
 "use strict";
 
-const Hiori = require('hiori');
+const { Hiori, NotFoundError, NavigationError, HioriError, consoleLog } = require('hiori');
 
+const mainStabLoop = require('./stab/index.js');
 const config = require('./config.json');
-const testLoop = require('./test/index.js')
 
 /* Startup checks */
  if (!process.env.HIORI_USER || !process.env.HIORI_PSWD) {
@@ -15,14 +15,28 @@ const testLoop = require('./test/index.js')
  * Main application loop
  */
 const mainLoop = async () => {
-  console.log(`${new Date().toISOString()}[main] Start loop.`);
+  consoleLog('Start loop.', 'main')
 
   // Start hiori instance
   const hiori = new Hiori(process.env.HIORI_USER, process.env.HIORI_PSWD);
+  hiori.debug = true;
   hiori.init(async () => {
 
-    // Register apps
-    await testLoop(hiori);
+    //try {
+
+      // Register apps
+      await mainStabLoop(hiori);
+
+    // Attempt to catch and silence soft errors
+    /*
+    } catch (e) {
+      if (e instanceof NotFoundError || e instanceof NavigationError) {
+        consoleLog('ERROR!', e);
+      } else{
+        throw new Error(e);
+      }
+    }
+    */
 
     hiori.close();
   });
@@ -31,5 +45,5 @@ const mainLoop = async () => {
 /**
  * Set main loop to repeat every X milliseconds.
  */
-console.log(`${new Date().toISOString()}[main] Starting application...`);
+consoleLog('Starting application...', 'main');
 setInterval(mainLoop, config.loop_interval);

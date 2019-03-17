@@ -1,0 +1,254 @@
+{
+  "stack": [
+    {
+      "pid": 4802122,
+      "uid": 161119,
+      "user": "OnceandFutureLurker",
+      "time": 1553312355,
+      "cmds": []
+    },
+    {
+      "pid": 4802126,
+      "uid": 147951,
+      "user": "Nyan sempai",
+      "time": 1553312768,
+      "cmds": []
+    },
+    {
+      "pid": 4803417,
+      "uid": 83557,
+      "user": "lychee",
+      "time": 1553356392,
+      "cmds": [
+        {
+          "action": "!status",
+          "value": "!status"
+        }
+      ]
+    },
+    {
+      "pid": 4803426,
+      "uid": 83557,
+      "user": "lychee",
+      "time": 1553356600,
+      "cmds": [
+        {
+          "action": "!stab",
+          "value": "!stab @USER:4673|yuzuki"
+        }
+      ]
+    },
+    {
+      "pid": 4803429,
+      "uid": 83557,
+      "user": "lychee",
+      "time": 1553356670,
+      "cmds": [
+        {
+          "action": "!stab",
+          "value": "!stab @USER:4673|yuzuki "
+        },
+        {
+          "action": "!stab",
+          "value": "!stab @USER:170940|villainess"
+        }
+      ]
+    },
+    {
+      "pid": 4803436,
+      "uid": 83557,
+      "user": "lychee",
+      "time": 1553356773,
+      "cmds": [
+        {
+          "action": "!stab",
+          "value": "!stab @USER:4673|yuzuki "
+        },
+        {
+          "action": "!stab",
+          "value": "!stab @USER:170940|villainess"
+        },
+        {
+          "action": "!status",
+          "value": "!status"
+        }
+      ]
+    },
+    {
+      "pid": 4803437,
+      "uid": 83557,
+      "user": "lychee",
+      "time": 1553356784,
+      "cmds": [
+        {
+          "action": "!stab",
+          "value": "!stab @USER:170940|villainess"
+        }
+      ]
+    },
+    {
+      "pid": 4803442,
+      "uid": 4673,
+      "user": "yuzuki",
+      "time": 1553356927,
+      "cmds": [
+        {
+          "action": "!stab",
+          "value": "!stab @USER:83557|lychee"
+        }
+      ]
+    },
+    {
+      "pid": 4803443,
+      "uid": 4673,
+      "user": "yuzuki",
+      "time": 1553356940,
+      "cmds": [
+        {
+          "action": "!stab",
+          "value": "!stab @USER:171879|hiori"
+        }
+      ]
+    },
+    {
+      "pid": 4803446,
+      "uid": 4673,
+      "user": "yuzuki",
+      "time": 1553356950,
+      "cmds": [
+        {
+          "action": "!stab",
+          "value": "!stab @USER:161119|OnceandFutureLurker"
+        }
+      ]
+    },
+    {
+      "pid": 4803455,
+      "uid": 44558,
+      "user": "villain",
+      "time": 1553357302,
+      "cmds": [
+        {
+          "action": "!stab",
+          "value": "!stab lychee"
+        }
+      ]
+    },
+    {
+      "pid": 4803456,
+      "uid": 44558,
+      "user": "villain",
+      "time": 1553357313,
+      "cmds": [
+        {
+          "action": "!stab",
+          "value": "!stab @USER:4673|yuzuki"
+        }
+      ]
+    },
+    {
+      "pid": 4803457,
+      "uid": 44558,
+      "user": "villain",
+      "time": 1553357325,
+      "cmds": [
+        {
+          "action": "!stab",
+          "value": "!stab @USER:83557|lychee"
+        }
+      ]
+    },
+    {
+      "pid": 4803463,
+      "uid": 16582,
+      "user": "Blitz",
+      "time": 1553357629,
+      "cmds": [
+        {
+          "action": "!stab",
+          "value": "!stab @USER:16582|Blitz"
+        }
+      ]
+    },
+    {
+      "pid": 4803466,
+      "uid": 44558,
+      "user": "villain",
+      "time": 1553357722,
+      "cmds": [
+        {
+          "action": "!stab",
+          "value": "!stab @USER:83557|lychee"
+        }
+      ]
+    },
+    {
+      "pid": 4803467,
+      "uid": 44558,
+      "user": "villain",
+      "time": 1553357730,
+      "cmds": [
+        {
+          "action": "!status",
+          "value": "!status"
+        }
+      ]
+    },
+    {
+      "pid": 4803554,
+      "uid": 83557,
+      "user": "lychee",
+      "time": 1553360125,
+      "cmds": [
+        {
+          "action": "!status",
+          "value": "!status"
+        }
+      ]
+    },
+    {
+      "pid": 4803559,
+      "uid": 16582,
+      "user": "Blitz",
+      "time": 1553360169,
+      "cmds": [
+        {
+          "action": "!stab",
+          "value": "!stab @USER:171879|hiori "
+        },
+        {
+          "action": "!status",
+          "value": "!status"
+        }
+      ]
+    },
+    {
+      "pid": 4803662,
+      "uid": 23336,
+      "user": "AMissingLinguist",
+      "time": 1553363584,
+      "cmds": [
+        {
+          "action": "!stab",
+          "value": "!stab @USER:23336|AMissingLinguist"
+        },
+        {
+          "action": "!status",
+          "value": "!status"
+        }
+      ]
+    },
+    {
+      "pid": 4803671,
+      "uid": 23336,
+      "user": "AMissingLinguist",
+      "time": 1553363654,
+      "cmds": [
+        {
+          "action": "!stab",
+          "value": "!stab @USER:171879|hiori"
+        }
+      ]
+    }
+  ]
+}
